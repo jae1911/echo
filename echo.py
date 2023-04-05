@@ -34,7 +34,7 @@ class EchoBot(Plugin):
         return (f"{cls.plural(days, 'day')}, {cls.plural(hours, 'hour')}, "
                 f"{cls.plural(minutes, 'minute')} and {cls.plural(seconds, 'second')}")
 
-    @command.new("ping", help="Ping")
+    @command.new("beep", help="Beep")
     @command.argument("message", pass_raw=True, required=False)
     async def ping_handler(self, evt: MessageEvent, message: str = "") -> None:
         diff = int(time() * 1000) - evt.timestamp
@@ -43,9 +43,9 @@ class EchoBot(Plugin):
         html_message = f'"{escape(message[:20])}" took' if message else "took"
         content = TextMessageEventContent(
             msgtype=MessageType.NOTICE, format=Format.HTML,
-            body=f"{evt.sender}: Pong! (ping {text_message} {pretty_diff} to arrive)",
-            formatted_body=f"<a href='https://matrix.to/#/{evt.sender}'>{evt.sender}</a>: Pong! "
-            f"(<a href='https://matrix.to/#/{evt.room_id}/{evt.event_id}'>ping</a> {html_message} "
+            body=f"{evt.sender}: Boop! (beep {text_message} {pretty_diff} to arrive)",
+            formatted_body=f"<a href='https://matrix.to/#/{evt.sender}'>{evt.sender}</a>: Boop! "
+            f"(<a href='https://matrix.to/#/{evt.room_id}/{evt.event_id}'>beep</a> {html_message} "
             f"{pretty_diff} to arrive)",
             relates_to=RelatesTo(
                 rel_type=RelationType("xyz.maubot.pong"),
